@@ -51,15 +51,15 @@ nav .navbar {
   margin: auto;
 }
 
-nav .navbar .logo a {
-  font-weight: 500;
-  font-size: 35px;
-  color: #4070f4;
+nav .navbar .logo img{
+  height: 60px; /* Adjust as needed */
+  width: auto;
+  display: inline-block
 }
 
-nav.sticky .navbar .logo a {
+/* nav.sticky .navbar .logo a {
   color: #fff;
-}
+} */
 
 nav .navbar .menu {
   display: flex;
@@ -93,7 +93,7 @@ nav.sticky .menu a:hover {
 
 .navbar .media-icons a {
   color: #4070f4;
-  font-size: 18px;
+  font-size: 20px;
   margin: 0 6px;
 }
 
@@ -300,7 +300,9 @@ section .button button:hover {
 }
 
 .skills .content {
-  padding: 40px 0;
+  width: 80%;
+  margin: 40px auto;
+  padding: 0px 0;
 }
 
 .skills .skills-details {
@@ -593,4 +595,50 @@ footer .text span a:hover {
     font-size: 50px;
     color: #4070f4;
   }
+}
+
+
+
+
+
+
+
+.msg_form {
+  padding: 60px 20px;
+  background-color: #f2f4f8;
+  text-align: center;
+}
+
+
+
+.msg_form form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.msg_form input,
+.msg_form textarea {
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+}
+
+.msg_form button {
+  background-color: #4a64f5;
+  color: #fff;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.msg_form button:hover {
+  background-color: #354ad7;
 }

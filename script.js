@@ -13,6 +13,13 @@ window.onscroll = function () {
   }
 };
 
+function downloadCV() {
+    const link = document.createElement('a');
+    link.href = 'KesavaSaiVeerendra.pdf';  // Make sure the file is in the same directory
+    link.download = 'KesavaSaiVeerendra.pdf';
+    link.click();
+  };
+
 // Side Navigation Menu
 let body = document.querySelector("body");
 let navBar = document.querySelector(".navbar");
@@ -44,3 +51,4 @@ let navLinks = document.querySelectorAll(".menu li a");
 navLinks.forEach((link) => {
   link.addEventListener("click", hideNavMenu);
 });
+

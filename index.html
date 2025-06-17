@@ -18,7 +18,7 @@
   <!-- navgaition menu -->
   <nav>
     <div class="navbar">
-      <div class="logo"><a href="#">Portfolio.</a></div>
+      <div class="logo"><a href="#home"><img src="images/logo.png"></a></div>
       <ul class="menu">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
@@ -30,11 +30,11 @@
         </div>
       </ul>
       <div class="media-icons">
-        <a href="https://www.facebook.com/profile.php?id=100084996735613"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://x.com/Kesava_choudary"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.instagram.com/kesava_kantipudi/"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/kesava-kantipudi-00550a291/"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/kesavakantipudi/"><i class="fab fa-github"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100084996735613" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://x.com/Kesava_choudary" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/kesava_kantipudi/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/kesava-kantipudi-00550a291/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/kesavakantipudi/" target="_blank"><i class="fab fa-github"></i></a>
       </div>
     </div>
     <div class="menu-btn">
@@ -77,7 +77,7 @@
             🌍 Let's connect and build something amazing!
           </p>
           <div class="button">
-            <button>Download Resume</button>
+            <button onclick="downloadCV()">Download Resume</button>
           </div>
         </div>
       </div>
@@ -147,53 +147,29 @@
           <div class="icon">
             <i class="fas fa-hand-rock"></i>
           </div>
-          <div class="topic"></div>
+          <div class="topic">Rock Paper Siccors Game using Python</div>
           <p> Developed an interactive Rock-Paper-Scissors game using Python. Utilized the random module to simulate the computer’s random choice and implemented game logic using conditional statements.
           </p>
         <div class="button">
-          <button href="https://github.com/kesavakantipudi/Python/blob/main/RPS.py">Link</button>
+          <button onclick="window.open('https://github.com/kesavakantipudi/Python/blob/main/RPS.py', '_blank')">Link</button>
           </div>
-
         </div>
         <div class="box">
           <div class="icon">
-            <i class="fas fa-paint-brush"></i>
+            <i class="fas fa-globe"></i>
           </div>
-          <div class="topic">Graphic Design</div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quam odio, qui voluptatem
-            eligendi?</p>
+          <div class="topic">Sentiment Analysis of IMDB Reviews using Multinomial Naive Bayes</div>
+          <p> This project focuses on building a sentiment analysis model using the Multinomial Naive Bayes algorithm to classify IMDB movie reviews as either positive or negative. The model processes textual data using CountVectorizer with stopword removal, trains on labeled reviews, and predicts the sentiment of new user inputs in real-time.</p>
+          <div class="button">
+          <button onclick="window.open('https://github.com/kesavakantipudi/Python', '_blank')">Link</button>
+          </div>
         </div>
         <div class="box">
           <div class="icon">
             <i class="fas fa-chart-line"></i>
           </div>
-          <div class="topic">Digital Marketing</div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quam odio, qui voluptatem
-            eligendi?</p>
-        </div>
-        <div class="box">
-          <div class="icon">
-            <i class="fab fa-android"></i>
-          </div>
-          <div class="topic">Icon Design</div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quam odio, qui voluptatem
-            eligendi?</p>
-        </div>
-        <div class="box">
-          <div class="icon">
-            <i class="fas fa-camera-retro"></i>
-          </div>
-          <div class="topic">Photography</div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quam odio, qui voluptatem
-            eligendi?</p>
-        </div>
-        <div class="box">
-          <div class="icon">
-            <i class="fas fa-tablet-alt"></i>
-          </div>
-          <div class="topic">Apps Devlopment</div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quam odio, qui voluptatem
-            eligendi?</p>
+          <div class="topic">Live Dashboard in Microsoft Excel</div>
+          <p>Created a Live Dashboard in Microsoft Excel that works on live data which is connected to Microsoft SharePoint List and also to automate the process we integrated Microsoft Power Automate</p>
         </div>
       </div>
     </div>
@@ -204,12 +180,17 @@
     <div class="content">
       <div class="title"><span>Contact Me</span></div>
       <div class="text">
-        <div class="topic">Have Any Project?</div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam neque ipsum corrupti dolores, facere numquam
-          voluptate aspernatur sit perferendis qui nisi modi! Recusandae deserunt consequatur voluptatibus alias
-          repellendus nobis eligendi.</p>
-        <div class="button">
-          <button>Let's Chat</button>
+        
+        <div class="msg_form">
+          <div class="topic">Get In Touch</div>
+        <form action="https://formspree.io/f/mdkzdovq" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        </div>
+
         </div>
       </div>
     </div>
@@ -218,7 +199,7 @@
   <!-- Footer Section Start -->
   <footer>
     <div class="text">
-      <span>Created By <a href="#">CodingLab</a> | &#169; 2021 All Rights Reserved</span>
+      <span>Created By <a href="#home">kesavakantipudi</a> | &#169; 2025 All Rights Reserved</span>
     </div>
   </footer>
 
