@@ -729,3 +729,22 @@ footer .text span a:hover {
 .msg_form button:hover {
   background-color: #354ad7;
 }
+
+@media (max-width: 600px) {
+  .contact-container {
+    width: 95%; /* allow more room on small screens */
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .msg_form {
+    padding: 20px; /* reduce padding */
+  }
+
+  .msg_form input,
+  .msg_form textarea {
+    width: 100%; /* prevent overflow */
+    box-sizing: border-box; /* include padding inside width */
+  }
+}
+
