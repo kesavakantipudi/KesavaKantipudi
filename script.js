@@ -209,6 +209,88 @@ document.addEventListener('DOMContentLoaded', function () {
   updateCarousel();
   startAutoplay();
 
+  // ---------------------- Carousel touch / drag support ----------------------
+  (function addDragSupport() {
+    if (!carouselEl || !track) return;
+
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
+    let deltaX = 0;
+    let containerWidth = carouselEl.clientWidth || window.innerWidth;
+    const threshold = 50; // px to trigger slide change
+
+    function onStart(clientX) {
+      isDragging = true;
+      startX = clientX;
+      deltaX = 0;
+      containerWidth = carouselEl.clientWidth || window.innerWidth;
+      // temporarily disable transition for smooth follow
+      track.style.transition = 'none';
+      stopAutoplay();
+    }
+
+    function onMove(clientX) {
+      if (!isDragging) return;
+      currentX = clientX;
+      deltaX = currentX - startX;
+      const deltaPercent = (deltaX / containerWidth) * 100;
+      const base = -currentIndex * slidePercent;
+      track.style.transform = `translateX(${base + deltaPercent}%)`;
+    }
+
+    function onEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+      // restore transition
+      track.style.transition = '';
+      // decide whether to change slides
+      if (Math.abs(deltaX) > threshold) {
+        if (deltaX < 0) {
+          // swiped left -> next
+          nextSlide();
+        } else {
+          // swiped right -> prev
+          prevSlide();
+        }
+      } else {
+        // snap back
+        updateCarousel();
+      }
+      restartAutoplay();
+    }
+
+    // Touch events
+    carouselEl.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length === 1) onStart(e.touches[0].clientX);
+    }, { passive: true });
+
+    carouselEl.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches.length === 1) onMove(e.touches[0].clientX);
+    }, { passive: true });
+
+    carouselEl.addEventListener('touchend', (e) => { onEnd(); });
+
+    // Mouse drag for desktop
+    carouselEl.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      onStart(e.clientX);
+      // listen on document so moving outside still tracks
+      const onMouseMove = (ev) => onMove(ev.clientX);
+      const onMouseUp = () => {
+        onEnd();
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+      };
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    });
+
+    // Resize should update containerWidth
+    window.addEventListener('orientationchange', () => { containerWidth = carouselEl.clientWidth || window.innerWidth; });
+    window.addEventListener('resize', () => { containerWidth = carouselEl.clientWidth || window.innerWidth; });
+  })();
+
   // ---------------------- Work Experience (timeline) interactivity ----------------------
   const timelineItems = document.querySelectorAll('.experience.timeline .timeline-item');
   // Toggle a timeline item open/closed. Allow multiple open entries.
