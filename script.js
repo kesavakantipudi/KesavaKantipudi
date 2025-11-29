@@ -59,3 +59,202 @@ navLinks.forEach((link) => {
   link.addEventListener("click", hideNavMenu);
 });
 
+// ---------------------- About image rotator ----------------------
+document.addEventListener('DOMContentLoaded', function () {
+  const aboutPhoto = document.getElementById('about-photo');
+  if (aboutPhoto) {
+    /*
+      About rotator images array:
+      - Add any image filenames (relative to the site root) into the array below.
+      - Example: 'Images/me1.jpg', 'Images/me2.png', etc.
+      - Keep the existing two images if you don't have more yet.
+    */
+    const images = [
+      'Images/23MH1A4224 (1).png',
+      'Images/MY DR IMG.png'
+      // add more filenames here, e.g. 'Images/me3.png'
+    ];
+
+    let idx = 0;
+
+    // rotate with fade: every 5 seconds
+    setInterval(() => {
+      aboutPhoto.classList.add('fading');
+      setTimeout(() => {
+        idx = (idx + 1) % images.length;
+        aboutPhoto.src = images[idx];
+        aboutPhoto.classList.remove('fading');
+      }, 550);
+    }, 5000);
+  }
+
+  // ---------------------- Projects carousel ----------------------
+  const track = document.querySelector('.projects-carousel .carousel-track');
+  const items = document.querySelectorAll('.projects-carousel .carousel-item');
+  const prevBtn = document.querySelector('.projects-carousel .prev');
+  const nextBtn = document.querySelector('.projects-carousel .next');
+  const indicatorsContainer = document.querySelector('.projects-carousel .carousel-indicators');
+  const carouselEl = document.querySelector('.projects-carousel');
+
+  // Responsive carousel: compute visibleCount based on container width
+  let visibleCount = 3; // default
+  let slidePercent = 100 / visibleCount;
+  let currentIndex = 0;
+  const autoplayInterval = 4000; // ms
+  let autoplayId = null;
+  let pages = 1;
+  const indicators = [];
+
+  function computeVisibleCount() {
+    const w = window.innerWidth;
+    // tune breakpoints to match CSS breakpoints
+    if (w <= 600) return 1;
+    if (w <= 900) return 2;
+    return 3;
+  }
+
+  function buildIndicators() {
+    if (!indicatorsContainer) return;
+    indicatorsContainer.innerHTML = '';
+    indicators.length = 0;
+    for (let i = 0; i < pages; i++) {
+      const btn = document.createElement('button');
+      btn.setAttribute('aria-label', `Go to project ${i + 1}`);
+      if (i === currentIndex) btn.classList.add('active');
+      btn.addEventListener('click', () => {
+        currentIndex = i;
+        updateCarousel();
+        restartAutoplay();
+      });
+      indicatorsContainer.appendChild(btn);
+      indicators.push(btn);
+    }
+  }
+
+  function updateIndicators() {
+    if (!indicators.length) return;
+    indicators.forEach((b, i) => {
+      b.classList.toggle('active', i === currentIndex);
+    });
+  }
+
+  function recalcLayout() {
+    visibleCount = computeVisibleCount();
+    slidePercent = 100 / visibleCount;
+    pages = Math.max(1, Math.max(0, items.length - visibleCount) + 1);
+    // ensure currentIndex within bounds
+    if (currentIndex >= pages) currentIndex = pages - 1;
+    buildIndicators();
+  }
+
+  function updateCarousel() {
+    if (!track) return;
+    const x = -currentIndex * slidePercent;
+    track.style.transform = `translateX(${x}%)`;
+    updateIndicators();
+  }
+
+  function prevSlide() {
+    if (!items.length) return;
+    currentIndex = (currentIndex - 1 + pages) % pages;
+    updateCarousel();
+  }
+
+  function nextSlide() {
+    if (!items.length) return;
+    currentIndex = (currentIndex + 1) % pages;
+    updateCarousel();
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); restartAutoplay(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); restartAutoplay(); });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { prevSlide(); restartAutoplay(); }
+    else if (e.key === 'ArrowRight') { nextSlide(); restartAutoplay(); }
+  });
+
+  // Autoplay controls
+  function startAutoplay() {
+    if (autoplayId || items.length <= visibleCount) return;
+    autoplayId = setInterval(() => { nextSlide(); }, autoplayInterval);
+  }
+
+  function stopAutoplay() {
+    if (autoplayId) { clearInterval(autoplayId); autoplayId = null; }
+  }
+
+  function restartAutoplay() { stopAutoplay(); startAutoplay(); }
+
+  // pause autoplay while user hovers the carousel
+  if (carouselEl) {
+    carouselEl.addEventListener('mouseenter', stopAutoplay);
+    carouselEl.addEventListener('mouseleave', startAutoplay);
+  }
+
+  // recalc on resize
+  window.addEventListener('resize', () => {
+    const prevVisible = visibleCount;
+    recalcLayout();
+    // if visibleCount changed, restart autoplay and update carousel position
+    if (visibleCount !== prevVisible) {
+      updateCarousel();
+      restartAutoplay();
+    }
+  });
+
+  // initialize
+  recalcLayout();
+  updateCarousel();
+  startAutoplay();
+
+  // ---------------------- Work Experience (timeline) interactivity ----------------------
+  const timelineItems = document.querySelectorAll('.experience.timeline .timeline-item');
+  // Toggle a timeline item open/closed. Allow multiple open entries.
+  function toggleTimelineItem(index) {
+    const it = timelineItems[index];
+    if (!it) return;
+    const wasActive = it.classList.contains('active');
+    const card = it.querySelector('.card');
+    if (wasActive) {
+      it.classList.remove('active');
+      if (card) card.style.maxHeight = '0';
+    } else {
+      it.classList.add('active');
+      if (card) card.style.maxHeight = card.scrollHeight + 'px';
+    }
+  }
+
+  if (timelineItems && timelineItems.length) {
+    timelineItems.forEach((it, i) => {
+      it.addEventListener('click', () => toggleTimelineItem(i));
+      it.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleTimelineItem(i);
+        }
+      });
+    });
+    // open all items by default so content is visible without clicking
+    timelineItems.forEach((it) => {
+      it.classList.add('active');
+      const card = it.querySelector('.card');
+      if (card) card.style.maxHeight = card.scrollHeight + 'px';
+    });
+  }
+
+    // ---------------------- Contact form: Clear button handler ----------------------
+    const contactForm = document.getElementById('contact-form');
+    const clearBtn = document.getElementById('clear-contact');
+    if (clearBtn && contactForm) {
+      clearBtn.addEventListener('click', () => {
+        // reset all form fields to their initial values
+        contactForm.reset();
+        // focus the first input for convenience
+        const first = contactForm.querySelector('input, textarea');
+        if (first) first.focus();
+      });
+    }
+});
+

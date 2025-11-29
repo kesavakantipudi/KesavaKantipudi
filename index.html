@@ -22,6 +22,7 @@
       <ul class="menu">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -52,7 +53,13 @@
         <div class="text-four">From Rajahmundry</div>
       </div>
       <div class="button">
-        <button onclick="downloadCV()">Download Resume</button>
+        <button class="cssbuttons-io-button" onclick="downloadCV()" aria-label="Download Resume">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="none" d="M0 0h24v24H0z"></path>
+            <path fill="currentColor" d="M1 14.5a6.496 6.496 0 0 1 3.064-5.519 8.001 8.001 0 0 1 15.872 0 6.5 6.5 0 0 1-2.936 12L7 21c-3.356-.274-6-3.078-6-6.5zm15.848 4.487a4.5 4.5 0 0 0 2.03-8.309l-.807-.503-.12-.942a6.001 6.001 0 0 0-11.903 0l-.12.942-.805.503a4.5 4.5 0 0 0 2.029 8.309l.173.013h9.35l.173-.013zM13 12h3l-4 5-4-5h3V8h2v4z"></path>
+          </svg>
+          <span>Download Resume</span>
+        </button>
       </div>
     </div>
   </section>
@@ -63,21 +70,71 @@
       <div class="title"><span>About Me</span></div>
       <div class="about-details">
         <div class="left">
-          <img src="Images/23MH1A4224 (1).png" alt=""  class="my_img"/>
+          <div class="about-photo">
+            <!-- Rotating About image; JS will change the src every 5s -->
+            <img id="about-photo" src="Images/23MH1A4224 (1).png" alt="Kesava" class="my_img"/>
+          </div>
         </div>
         <div class="right">
           <div class="topic">Developing Is My Passion</div>
           <p>
-            Hello! I’m Kesava Sai Veerendra Kantipudi, a passionate Computer Science undergraduate currently pursuing my B.Tech in Artificial Intelligence and Machine Learning at Aditya College of Engineering.
-
-            I'm an enthusiastic developer with a strong foundation in Python, Java, and C, along with a keen interest in problem-solving and software development. I thrive on building hands-on projects and exploring emerging technologies.
-
-            With skills ranging from frontend development (HTML, CSS) to Machine Learning Algorithms, I continuously seek opportunities to grow and apply my knowledge in real-world scenarios. I'm a quick learner, a team player, and always up for a challenge that pushes my limits.
+            Hello! I’m Kesava Sai Veerendra Kantipudi, an AI & ML engineering student currently pursuing my B.Tech in Artificial Intelligence and Machine Learning at Aditya College of Engineering. I am passionate about building intelligent systems, solving real-world problems, and developing impactful software solutions.
+            <br>
+            I have a strong technical foundation in Python, Java, SQL, C, and hands-on experience with machine learning, NLP, data analytics, and frontend development. I enjoy creating practical projects such as AI-driven platforms, sentiment analysis models, interactive dashboards, automation workflows, and web applications.
+            <br>
+            I’m also skilled in Power BI, Excel, SharePoint, Power Automate, and have experience deploying AI-based solutions on AWS (S3, EC2, Rekognition, Transcribe, Lex). Along with technical proficiency, I’m a continuous learner who loves challenges—whether it's problem-solving on LeetCode, building new tools, or exploring emerging technologies.
+            <br>
+            I’m driven, collaborative, and always excited to work on projects that push my boundaries and create meaningful impact.
             <br>
             🌍 Let's connect and build something amazing!
           </p>
           <div class="button">
-            <button onclick="downloadCV()">Download Resume</button>
+            <button class="cssbuttons-io-button" onclick="downloadCV()" aria-label="Download Resume">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path fill="currentColor" d="M1 14.5a6.496 6.496 0 0 1 3.064-5.519 8.001 8.001 0 0 1 15.872 0 6.5 6.5 0 0 1-2.936 12L7 21c-3.356-.274-6-3.078-6-6.5zm15.848 4.487a4.5 4.5 0 0 0 2.03-8.309l-.807-.503-.12-.942a6.001 6.001 0 0 0-11.903 0l-.12.942-.805.503a4.5 4.5 0 0 0 2.029 8.309l.173.013h9.35l.173-.013zM13 12h3l-4 5-4-5h3V8h2v4z"></path>
+              </svg>
+              <span>Download Resume</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Experience Section Start -->
+  <section class="experience timeline" id="experience">
+    <div class="content">
+      <div class="title"><span>Work Experience</span></div>
+      <div class="timeline">
+        <div class="timeline-item" tabindex="0">
+          <div class="node" aria-hidden="true"></div>
+          <div class="card">
+            <div class="job-head">
+              <div class="job-title">Summer Intern - Data Specialist</div>
+              <div class="job-company">Technical Hub Pvt Ltd</div>
+              <div class="job-date">May 2025 – June 2025</div>
+            </div>
+            <ul>
+              <li>Built interactive Power BI dashboards to analyze participation and performance trends.</li>
+              <li>Automated workflows with Power Automate + SharePoint, including email reminders and notifications.</li>
+              <li>Developed an event registration system with automated certificate/pass generation, reducing manual work by 50%.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item" tabindex="0">
+          <div class="node" aria-hidden="true"></div>
+          <div class="card">
+            <div class="job-head">
+              <div class="job-title">Web Development Intern</div>
+              <div class="job-company">Codsoft (Remote)</div>
+              <div class="job-date">July 2024 – Aug 2024</div>
+            </div>
+            <ul>
+              <li>Designed and developed a responsive personal portfolio website using HTML, CSS, and JavaScript.</li>
+              <li>Showcased projects and skills in a visually appealing, user-friendly format.</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -91,7 +148,7 @@
       <div class="title"><span>My Skills</span></div>
       <div class="skills-details">
         <div class="text">
-          <div class="topic">Skills Reflects Our Knowledge</div>
+          <div class="topic"><center>Skills Reflects Our Knowledge</center></div>
           <p>I specialize in programming, problem-solving, and applying machine learning concepts. From Python and Java to front-end development, I bring hands-on experience and continuous learning to the table</p>
           <div class="experience">
             <div class="num"></div>
@@ -101,54 +158,51 @@
           </div>
         </div>
         <div class="boxes">
-          <div class="box">
-            <div class="topic">Python</div>
-            <div class="per">80%</div>
+          <!-- Updated grouped skill cards per resume -->
+          <div class="box group">
+            <div class="topic">Programming & Databases</div>
+            <ul class="skill-list">
+              <li>Python</li>
+              <li>SQL (Oracle)</li>
+              <li>Java</li>
+              <li>C</li>
+              <li>HTML</li>
+              <li>CSS</li>
+            </ul>
           </div>
-          <div class="box">
-            <div class="topic">C</div>
-            <div class="per">80%</div>
+
+          <div class="box group">
+            <div class="topic">Data Analytics & Tools</div>
+            <ul class="skill-list">
+              <li>Excel</li>
+              <li>Power BI</li>
+              <li>SharePoint</li>
+              <li>Power Automate</li>
+            </ul>
           </div>
-          <div class="box">
-            <div class="topic">Java</div>
-            <div class="per">70%</div>
-          </div>
-          <div class="box">
-            <div class="topic">HTML</div>
-            <div class="per">80%</div>
-          </div>
-          <div class="box">
-            <div class="topic">CSS</div>
-            <div class="per">60%</div>
-          </div>
-          <div class="box">
-            <div class="topic">Oracle SQL</div>
-            <div class="per">75%</div>
-          </div>
-          <div class="box">
+
+          <div class="box group">
             <div class="topic">Machine Learning</div>
-            <div class="per">60%</div>
+            <ul class="skill-list">
+              <li>Supervised &amp; Unsupervised Learning</li>
+              <li>NLP — Sentiment Analysis, Text Processing</li>
+            </ul>
           </div>
-          <div class="box">
-            <div class="topic">Git / GitHub</div>
-            <div class="per">85%</div>
+
+          <div class="box group">
+            <div class="topic">AWS</div>
+            <ul class="skill-list">
+              <li>S3</li>
+              <li>EC2</li>
+              <li>IAM</li>
+              <li>Rekognition</li>
+              <li>Transcribe</li>
+              <li>Translate</li>
+              <li>Lex</li>
+            </ul>
           </div>
-          <div class="box">
-            <div class="topic">Excel</div>
-            <div class="per">80%</div>
-          </div>
-          <div class="box">
-            <div class="topic">SharePoint</div>
-            <div class="per">90%</div>
-          </div>
-          <div class="box">
-            <div class="topic">POWER BI</div>
-            <div class="per">40%</div>
-          </div>
-          <div class="box">
-            <div class="topic">Power Automate</div>
-            <div class="per">50%</div>
-          </div>
+
+          <!-- Core Strengths removed per request -->
         </div>
       </div>
     </div>
@@ -158,35 +212,91 @@
   <section class="projects" id="projects">
     <div class="content">
       <div class="title"><span>My Projects</span></div>
-      <div class="boxes">
-        <div class="box">
-          <div class="icon">
-            <i class="fas fa-hand-rock"></i>
+  <div class="projects-carousel">
+  <button class="carousel-btn prev" aria-label="Previous project">&#10094;</button>
+  <div class="carousel-track">
+
+          <div class="carousel-item">
+            <div class="box">
+              <div class="icon">
+                <i class="fas fa-code"></i>
+              </div>
+              <div class="topic">SkillForge AI — Placement Preparation Assistant</div>
+              <p>AI-powered platform with study tools, mock interviews, quizzes, and personalized career guidance.</p>
+              <div>
+                <ul> 
+                  <li>AI Study Assistant</li>
+                  <li>AI Mock Interviews</li>
+                  <li>AI Quiz Generator</li>
+                  <li>Job Role Insights (Web Scraping)</li>
+                  <li>Resume Analyzer</li>
+                  <li>Personalized Career Roadmap</li>
+                </ul>
+              </div>
+              <div class="button"><button onclick="window.open('https://github.com/kesavakantipudi/SkillForgeAI', '_blank')">Source Code</button></div>
+            </div>
           </div>
-          <div class="topic">Rock Paper Siccors Game using Python</div>
-          <p> Developed an interactive Rock-Paper-Scissors game using Python. Utilized the random module to simulate the computer’s random choice and implemented game logic using conditional statements.
-          </p>
-        <div class="button">
-          <button onclick="window.open('https://github.com/kesavakantipudi/Python/blob/main/RPS.py', '_blank')">Link</button>
+
+          <div class="carousel-item">
+            <div class="box">
+              <div class="icon">
+                <i class="fas fa-hand-rock"></i>
+              </div>
+              <div class="topic">Rock Paper Scissors Game (Python)</div>
+              <p> Developed an interactive Rock-Paper-Scissors game using Python. Utilized the random module to simulate the computer’s random choice and implemented game logic using conditional statements.</p>
+              <div class="button"><button onclick="window.open('https://github.com/kesavakantipudi/Python/blob/main/RPS.py', '_blank')">Source Code</button></div>
+            </div>
           </div>
+
+          <div class="carousel-item">
+            <div class="box">
+              <div class="icon">
+                <i class="fas fa-globe"></i>
+              </div>
+              <div class="topic">Sentiment Analysis (IMDB)</div>
+              <p>Built a sentiment analysis model using Multinomial Naive Bayes and CountVectorizer to classify IMDB reviews. Trained on labeled data and provided a real-time prediction demo.</p>
+              <div class="button"><button onclick="window.open('https://github.com/kesavakantipudi/Python', '_blank')">Source Code</button></div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="box">
+              <div class="icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="topic">Live Dashboard (Excel)</div>
+              <p>Created a Live Dashboard in Microsoft Excel connected to SharePoint and automated updates using Power Automate.</p>
+            </div>
+          </div>
+
+          <!-- placeholder projects (you can replace content later) -->
+          
+
+          <!-- <div class="carousel-item">
+            <div class="box">
+              <div class="icon">
+                <i class="fas fa-database"></i>
+              </div>
+              <div class="topic">Placeholder Project B</div>
+              <p>Another sample project with a short description. Update it when you're ready.</p>
+              <div class="button"><button onclick="window.open('#', '_blank')">Link</button></div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="box">
+              <div class="icon">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <div class="topic">Placeholder Project C</div>
+              <p>Third placeholder entry. Use this slot for demos, repos, or case studies.</p>
+              <div class="button"><button onclick="window.open('#', '_blank')">Link</button></div>
+            </div>
+          </div> -->
         </div>
-        <div class="box">
-          <div class="icon">
-            <i class="fas fa-globe"></i>
-          </div>
-          <div class="topic">Sentiment Analysis of IMDB Reviews using Multinomial Naive Bayes</div>
-          <p> This project focuses on building a sentiment analysis model using the Multinomial Naive Bayes algorithm to classify IMDB movie reviews as either positive or negative. The model processes textual data using CountVectorizer with stopword removal, trains on labeled reviews, and predicts the sentiment of new user inputs in real-time.</p>
-          <div class="button">
-          <button onclick="window.open('https://github.com/kesavakantipudi/Machine_Learning/blob/main/Review_Analysis.py', '_blank')">Link</button>
-          </div>
-        </div>
-        <div class="box">
-          <div class="icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <div class="topic">Live Dashboard in Microsoft Excel</div>
-          <p>Created a Live Dashboard in Microsoft Excel that works on live data which is connected to Microsoft SharePoint List and also to automate the process we integrated Microsoft Power Automate</p>
-        </div>
+        <!-- indicators (dots) will be generated by JS -->
+        <div class="carousel-indicators" aria-hidden="false"></div>
+        <button class="carousel-btn next" aria-label="Next project">&#10095;</button>
       </div>
     </div>
   </section>
@@ -227,11 +337,14 @@
       <div class="text">
         <div class="msg_form">
           <div class="topic">Get In Touch</div>
-          <form action="https://formspree.io/f/mdkzdovq" method="POST">
+          <form id="contact-form" action="https://formspree.io/f/mdkzdovq" method="POST">
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
             <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
+            <div class="form-actions">
+              <button type="submit" class="send-btn">Send Message</button>
+              <button type="button" id="clear-contact" class="clear-btn">Clear</button>
+            </div>
           </form>
         </div>
       </div>  
@@ -251,4 +364,3 @@
 </body>
 
 </html>
-

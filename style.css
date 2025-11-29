@@ -52,9 +52,11 @@ nav .navbar {
 }
 
 nav .navbar .logo img{
-  height: 60px; /* Adjust as needed */
+  height: 60px;
   width: auto;
-  display: inline-block
+  display: inline-block;
+  /* disable the global img hover transform for the logo */
+  transition: none;
 }
 
 /* nav.sticky .navbar .logo a {
@@ -248,6 +250,10 @@ section .title span::after {
   transform: translateX(-50%);
 }
 
+.about .content {
+  padding: 60px;
+}
+
 .about .about-details .left {
   width: 45%;
 }
@@ -257,6 +263,11 @@ section .title span::after {
   width: 350px;
   object-fit: cover;
 }
+
+/* About photo container: allow smooth fade when rotating images */
+.about-photo { display: flex; justify-content: center; }
+.about-photo img { transition: opacity 0.6s ease, transform 0.4s ease; opacity: 1; }
+.about-photo img.fading { opacity: 0; }
 
 .about-details .right {
   width: 55%;
@@ -276,6 +287,13 @@ img {
 img:hover {
   transform: translateY(-10px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Logo should not move on hover; override the global img:hover rule */
+nav .navbar .logo img:hover,
+.logo img:hover {
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .my_img {
@@ -323,7 +341,7 @@ section .button button:hover {
 .skills .content {
   width: 80%;
   margin: 40px auto;
-  padding: 0;
+  padding: 60px;
 }
 
 .skills .skills-details {
@@ -336,7 +354,7 @@ section .button button:hover {
 .skills-details .boxes {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* always 3 columns on desktop */
+  grid-template-columns: repeat(4, 1fr); /* show 4 cards at once on wide screens */
   gap: 20px;
 }
 
@@ -345,13 +363,15 @@ section .button button:hover {
   padding: 20px;
   text-align: center;
   border-radius: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  /* subtle default elevation */
+  box-shadow: 0 6px 18px rgba(16,40,80,0.06);
 }
 
 /* Hover effect */
 .skills-details .box:hover {
-  transform: translateY(-8px);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 42px rgba(16,40,80,0.10);
 }
 
 .skills-details .boxes .topic {
@@ -367,6 +387,11 @@ section .button button:hover {
   color: #4070f4;
 }
 
+/* Group card specifics */
+.skills-details .box.group { text-align: left; padding: 22px; }
+.skills-details .skill-list { list-style: none; margin-top: 8px; color: #0E2431; }
+.skills-details .skill-list li { padding: 6px 0; font-size: 16px; }
+
 .skills-details .boxes .text {
   font-size: 14px;
   color: #0E2431;
@@ -379,6 +404,44 @@ section .button button:hover {
   }
 }
 
+  /* From Uiverse.io by adamgiebl - download button style */
+  .cssbuttons-io-button {
+    display: flex;
+    align-items: center;
+    font-family: inherit;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 17px;
+    padding: 0.8em 1.5em 0.8em 1.2em;
+    color: white;
+    background: #ad5389;
+    background: linear-gradient(
+      0deg,
+      rgba(77, 54, 208, 1) 0%,
+      rgba(132, 116, 254, 1) 100%
+    );
+    border: none;
+    box-shadow: 0 0.7em 1.5em -0.5em #4d36d0be;
+    letter-spacing: 0.05em;
+    border-radius: 20em;
+  }
+
+  .cssbuttons-io-button svg {
+    margin-right: 8px;
+  }
+
+  .cssbuttons-io-button:hover {
+    box-shadow: 0 0.5em 1.5em -0.5em #4d36d0be;
+  }
+
+  .cssbuttons-io-button:active {
+    box-shadow: 0 0.3em 1em -0.5em #4d36d0be;
+  }
+
+  /* If you want the button to look like a link (anchor), the styles below ensure it behaves like a button */
+  .cssbuttons-io-button[role="button"] { display: inline-flex; }
+
+
 @media (max-width: 600px) {
   .skills-details .boxes {
     grid-template-columns: 1fr; /* single column on mobile */
@@ -386,12 +449,164 @@ section .button button:hover {
 }
 
 
+/* Work Experience CSS */
 
-/* My Services CSS */
+/* Work Experience - timeline roadmap style */
+.experience.timeline .content { padding: 60px 0; }
+.experience.timeline .timeline {
+  position: relative;
+  padding-left: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.experience.timeline .timeline::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, rgba(64,112,244,0.15), rgba(64,112,244,0.06));
+  border-radius: 4px;
+}
+.experience.timeline .timeline-item {
+  position: relative;
+  display: block; /* stack like normal content */
+  gap: 0;
+  align-items: stretch;
+  cursor: default; /* no interactivity */
+  padding: 12px 0;
+}
+.experience.timeline .timeline-item:focus { outline: none; }
+.experience.timeline .node {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 4px solid #527cf4;
+  box-shadow: 0 6px 18px rgba(82,124,244,0.12);
+  flex: 0 0 auto;
+  margin-left: -2px;
+}
+.experience.timeline .card {
+  background: #fff;
+  padding: 14px 18px;
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(12,35,68,0.06);
+  flex: 1 1 auto;
+  /* make cards permanently expanded */
+  max-height: none !important;
+  overflow: visible !important;
+  transition: none !important;
+  transform: none !important;
+}
+.experience.timeline .timeline-item.active .card {
+  /* active state disabled for fixed cards */
+  max-height: none !important;
+  transform: none !important;
+}
+.experience.timeline .job-head { display:flex; flex-direction:column; gap:4px; margin-bottom:6px; }
+.experience.timeline .job-title { font-weight:700; color:#0E2431; font-size:18px; }
+.experience.timeline .job-company { color:#556678; font-size:14px; }
+.experience.timeline .job-date { color:#8393a7; font-size:13px; }
+.experience.timeline .card ul { margin-left: 18px; color:#253245; }
+
+@media (max-width: 900px) {
+  .experience.timeline .timeline { padding-left: 10px; }
+  .experience.timeline .timeline::before { left: 6px; }
+  .experience.timeline .node { width: 18px; height: 18px; border-width: 3px; }
+}
+
+/* Remove map/timeline visuals: hide vertical line and nodes and normalize card padding */
+.experience.timeline .timeline::before {
+  display: none !important;
+}
+.experience.timeline .node {
+  display: none !important;
+}
+.experience.timeline .timeline {
+  padding-left: 0 !important;
+}
+.experience.timeline .card {
+  /* reset left padding so content aligns normally when nodes are removed */
+  padding-left: 18px !important;
+}
+
+
+
+/* My Projects CSS */
+
+.projects .content{
+  padding: 55px;
+}
 .projects .boxes {
+  /* kept for inner box visuals when used as standalone */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+/* Carousel wrapper for projects */
+.projects-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.projects-carousel .carousel-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.45s cubic-bezier(.22,.9,.12,1);
+}
+
+.projects-carousel .carousel-item { min-width: 33.333333%; display: flex; justify-content: center; }
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: #000000;
+  border: none;
+  width: 44px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.carousel-btn:hover { background: #2f5fe0; }
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+/* Carousel indicators (dots) */
+.carousel-indicators {
+  position: absolute;
+  bottom: -24px; /* place indicators below the visible card */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 12;
+}
+.carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.carousel-indicators button.active {
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(64,112,244,0.18);
 }
 
 .projects .boxes .box {
@@ -410,6 +625,90 @@ section .button button:hover {
   color: #fff;
 }
 
+/* Professional card styling for carousel single-slide view */
+
+/* Each carousel item shows 3 cards horizontally.
+   Cards are vertical: icon on top, title, description, CTA.
+*/
+.projects-carousel .carousel-item .box {
+  width: 92%;
+  max-width: 420px;
+  text-align: center;
+  border-radius: 14px;
+  padding: 22px 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+  box-shadow: 0 8px 30px rgba(12,35,68,0.07), 0 4px 12px rgba(12,35,68,0.04);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.projects-carousel .carousel-item .box:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 22px 48px rgba(12,35,68,0.12), 0 8px 20px rgba(12,35,68,0.06);
+}
+
+/* Remove default bullets inside project cards and style list items */
+.projects-carousel .carousel-item .box ul,
+.projects-carousel .box ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.projects-carousel .carousel-item .box ul li,
+.projects-carousel .box ul li {
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0E2431;
+  /* match paragraph text size/color in project cards */
+  font-size: 14px;
+  color: #395064;
+}
+
+/* If list item icons/emojis are used, ensure they don't wrap awkwardly */
+.projects-carousel .carousel-item .box ul li svg,
+.projects-carousel .carousel-item .box ul li img {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+/* Icon styling now sits at the top of the card */
+.projects-carousel .carousel-item .icon {
+  flex: 0 0 auto;
+  height: 76px;
+  width: 76px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #fff;
+  background: linear-gradient(135deg, #527cf4 0%, #2f5fe0 100%);
+  box-shadow: 0 8px 20px rgba(47,95,224,0.14);
+}
+
+.projects-carousel .carousel-item .topic {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0E2431;
+  margin: 6px 0 0 0;
+}
+
+.projects-carousel .carousel-item p {
+  color: #395064;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Ensure carousel has breathing room for indicators under the card */
+.projects-carousel { padding-bottom: 64px; }
+
 .projects .boxes .box .icon {
   height: 50px;
   width: 50px;
@@ -426,12 +725,6 @@ section .button button:hover {
 .boxes .box:hover .icon {
   background-color: #fff;
   color: #4070f4;
-}
-
-.projects .boxes .box:hover .topic,
-.projects .boxes .box:hover p {
-  color: #0E2431;
-  transition: all 0.4s ease;
 }
 
 .projects .boxes .box:hover .topic,
@@ -545,10 +838,9 @@ footer .text span a:hover {
   color: #fff;
   background: #4070f4;
   padding: 7px 12px;
-  ;
   font-size: 18px;
   border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   display: none;
 }
 
@@ -696,6 +988,11 @@ footer .text span a:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Center the Get In Touch card vertically and horizontally within its column */
+.contact .msg_form { display: flex; align-items: center; justify-content: center; }
+.contact .msg_form form { width: 100%; }
+.contact .msg_form input, .contact .msg_form textarea { width: 100%; box-sizing: border-box; }
+
 
 
 .msg_form form {
@@ -730,6 +1027,33 @@ footer .text span a:hover {
   background-color: #354ad7;
 }
 
+/* Arrange Send and Clear buttons side-by-side inside contact form */
+.msg_form .form-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+}
+.msg_form .form-actions .send-btn {
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: #4a64f5;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.msg_form .form-actions .clear-btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: transparent;
+  color: #4a64f5;
+  border: 1px solid #4a64f5;
+  cursor: pointer;
+}
+.msg_form .form-actions .clear-btn:hover {
+  background: rgba(74,100,245,0.06);
+}
+
 @media (max-width: 600px) {
   .contact-container {
     width: 95%; /* allow more room on small screens */
@@ -747,4 +1071,3 @@ footer .text span a:hover {
     box-sizing: border-box; /* include padding inside width */
   }
 }
-
