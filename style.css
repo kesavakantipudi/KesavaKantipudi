@@ -974,6 +974,21 @@ footer .text span a:hover {
   }
 }
 
+/* Responsive tweaks for Projects carousel to ensure cards are visible on small screens */
+@media (max-width: 900px) {
+  .projects-carousel .carousel-item { min-width: 50%; }
+  .projects-carousel .carousel-item .box { max-width: 90%; }
+}
+
+@media (max-width: 600px) {
+  .projects-carousel .carousel-item { min-width: 100%; }
+  .projects-carousel .carousel-item .box { max-width: 94%; }
+  /* hide large arrow buttons on very small screens to avoid overlap */
+  .projects-carousel .carousel-btn { display: none; }
+  /* ensure indicators remain visible and spaced */
+  .carousel-indicators { bottom: -18px; }
+}
+
 
 
 
@@ -1070,4 +1085,74 @@ footer .text span a:hover {
     width: 100%; /* prevent overflow */
     box-sizing: border-box; /* include padding inside width */
   }
+}
+
+/* Widen main content and project cards on narrow screens so elements use more horizontal space */
+@media (max-width: 900px) {
+  /* allow sections to use more of the viewport on tablets */
+  section .content { width: 92% !important; }
+  /* reduce large paddings in About/Skills/Projects to give more room */
+  .about .content, .skills .content, .projects .content { padding-left: 28px; padding-right: 28px; }
+  /* let carousel items be slightly larger on medium screens */
+  .projects-carousel .carousel-item { min-width: 50%; }
+  .projects-carousel .carousel-item .box { max-width: 96%; width: 100%; margin: 0 auto; }
+}
+
+@media (max-width: 600px) {
+  /* use almost full width for sections on phones */
+  section .content { width: 96% !important; padding-left: 6px; padding-right: 6px; }
+  /* remove big internal paddings that shrink content area */
+  .about .content, .skills .content, .projects .content { padding: 14px 8px; }
+
+  /* Make project cards take the full carousel viewport and occupy more width */
+  .projects-carousel { padding-bottom: 110px; }
+  .projects-carousel .carousel-item { min-width: 100%; }
+  .projects-carousel .carousel-item .box {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 26px 20px; /* slightly larger padding for readable layout */
+    box-sizing: border-box;
+  }
+
+  /* Slightly reduce title wrapping by increasing title size and line-height */
+  .projects-carousel .carousel-item .topic { font-size: 20px; line-height: 1.15; }
+
+  /* Make skill boxes use more horizontal space */
+  .skills-details .boxes { grid-template-columns: 1fr !important; }
+  .skills-details .box.group { width: 92% !important; margin: 0 auto 18px; }
+
+  /* Ensure contact container uses most of viewport on phones */
+  .contact-container { width: 96%; max-width: 100%; gap: 16px; padding: 0; }
+}
+
+/* Mobile: enlarge project card text and increase card size for better readability */
+@media (max-width: 600px) {
+  .projects-carousel .carousel-item .box {
+    padding: 28px 20px; /* more breathing room */
+    max-width: 98%;
+  }
+
+  .projects-carousel .carousel-item .topic {
+    font-size: 20px; /* larger title */
+    line-height: 1.2;
+  }
+
+  .projects-carousel .carousel-item p {
+    font-size: 16px; /* larger description */
+  }
+
+  .projects-carousel .carousel-item .box ul li,
+  .projects-carousel .box ul li {
+    font-size: 15px; /* slightly larger list items */
+  }
+
+  .projects-carousel .carousel-item .icon {
+    height: 88px;
+    width: 88px;
+    font-size: 28px;
+  }
+
+  /* Give a bit more space for indicators under larger cards */
+  .projects-carousel { padding-bottom: 92px; }
 }
