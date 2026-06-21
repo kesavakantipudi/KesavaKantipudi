@@ -184,13 +184,13 @@ Production-ready image analysis API with asynchronous processing and rate limiti
 
 ## 🤝 Connect With Me
 
-📧 Email: your-email@example.com
+📧 Email: kantipudikesavasaiveerendra@gmail.com
 
-💼 LinkedIn: https://linkedin.com/in/your-profile
+💼 LinkedIn: https://linkedin.com/in/kesavakantipudi
 
 📺 YouTube: Tech_With_Kesava
 
-🌐 Portfolio: Coming Soon
+🌐 Portfolio: https://kesavakantipudi.vercel.app/
 
 ---
 
